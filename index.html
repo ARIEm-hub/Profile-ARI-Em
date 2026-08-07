@@ -1,93 +1,137 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#09050f" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#09030f">
+  <meta name="description" content="ARI Em — creator of DARKCLAW. Personal profile.">
   <title>ARI Em — DARKCLAW</title>
-  <meta name="description" content="Персональный профиль ARI Em — создателя DARKCLAW." />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="loader" class="loader" aria-hidden="true">
-    <div class="loader__mist"></div>
-    <div class="loader__sigil"><img src="darkclaw-logo.png" alt="DARKCLAW logo" /></div>
-    <div class="loader__title">ENTERING THE WINTER VOID</div>
-    <div class="loader__bar"><i></i></div>
-    <div class="loader__percent">0%</div>
+  <div class="site-bg" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <img src="darkclaw-logo.png" alt="DARKCLAW" class="loader-logo">
+      <div class="loader-title">DARKCLAW</div>
+      <div class="loader-line"><span></span></div>
+      <div class="loader-text">ENTERING ARI'S SPACE</div>
+    </div>
   </div>
 
-  <div class="snow" aria-hidden="true"></div>
-  <div class="cursor cursor--dot" aria-hidden="true"></div>
-  <div class="cursor cursor--ring" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-  <main class="page">
-    <header class="hero glass">
-      <div class="hero__left">
-        <div class="eyebrow">PERSONAL PROFILE // DARKCLAW</div>
-        <h1><span>ARI</span> Em</h1>
-        <p class="hero__role">Создатель <b>DARKCLAW</b></p>
-        <div class="chips">
-          <span>19 лет</span><span>188 см</span><span>Winter soul</span>
+  <header class="topbar glass">
+    <a class="brand" href="#home" aria-label="DARKCLAW home">
+      <img src="darkclaw-logo.png" alt="">
+      <span>DARKCLAW</span>
+    </a>
+    <nav>
+      <a href="#home">PROFILE</a>
+      <a href="#about">ABOUT</a>
+      <a href="#gallery">GALLERY</a>
+    </nav>
+    <div class="online"><i></i> ONLINE</div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-card glass">
+        <div class="portrait-side">
+          <div class="portrait-frame" id="portraitFrame">
+            <img id="mainPortrait" src="avatar1.png" alt="ARI avatar">
+            <div class="portrait-shine"></div>
+            <button class="arrow left" id="prevBtn" aria-label="Предыдущее изображение">‹</button>
+            <button class="arrow right" id="nextBtn" aria-label="Следующее изображение">›</button>
+            <div class="image-count"><span id="currentIndex">01</span> / 05</div>
+          </div>
+          <div class="dots" id="dots" aria-label="Выбор изображения"></div>
+        </div>
+
+        <div class="profile-side">
+          <div class="eyebrow">PERSONAL ID // 019</div>
+          <h1><span>ARI</span> Em</h1>
+          <div class="role-row">
+            <img src="darkclaw-logo.png" alt="DARKCLAW logo">
+            <div>
+              <small>CREATOR OF</small>
+              <strong>DARKCLAW</strong>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div><span>AGE</span><strong>19</strong><small>лет</small></div>
+            <div><span>HEIGHT</span><strong>188</strong><small>см</small></div>
+            <div><span>MODE</span><strong>WINTER</strong><small>always</small></div>
+          </div>
+
+          <div class="tags">
+            <span>IT</span><span>PC</span><span>TECH</span><span>WEB</span><span>VRCHAT</span><span>DARKCLAW</span><span>CREATIVE</span>
+          </div>
+
+          <a href="#about" class="enter-btn"><span>READ PROFILE</span><b>↓</b></a>
         </div>
       </div>
-
-      <div class="hero__gallery" data-gallery>
-        <button class="gallery__btn gallery__btn--prev" aria-label="Предыдущее фото">‹</button>
-        <div class="gallery__frame">
-          <img src="avatar1.png" alt="ARI avatar" class="gallery__image is-active" />
-          <img src="avatar2.png" alt="ARI avatar" class="gallery__image" />
-          <img src="avatar3.png" alt="ARI avatar" class="gallery__image" />
-          <img src="avatar4.png" alt="ARI avatar" class="gallery__image" />
-          <img src="avatar5.png" alt="ARI avatar" class="gallery__image" />
-          <div class="gallery__shine"></div>
-        </div>
-        <button class="gallery__btn gallery__btn--next" aria-label="Следующее фото">›</button>
-        <div class="gallery__dots" aria-label="Выбор фото"></div>
-      </div>
-    </header>
-
-    <section class="grid">
-      <article class="glass card about">
-        <div class="section-title"><span>01</span><h2>Обо мне</h2></div>
-        <p>По характеру я довольно прямой человек. Люблю честность, не люблю лишнюю официальность и предпочитаю говорить всё как есть. Если мне что-то действительно интересно — могу долго разбираться в этом, пока не добьюсь нужного результата.</p>
-        <p>Мой стиль — тёмная эстетика, готика, неон, чёрно-фиолетовые оттенки и немного хаоса. В целом я человек, которому нравится сочетать техническую сторону с творчеством.</p>
-      </article>
-
-      <aside class="glass card profile-card">
-        <div class="section-title"><span>02</span><h2>Профиль</h2></div>
-        <dl>
-          <div><dt>Имя</dt><dd>ARI</dd></div>
-          <div><dt>Фамилия</dt><dd>Em</dd></div>
-          <div><dt>Возраст</dt><dd>19 лет</dd></div>
-          <div><dt>Рост</dt><dd>188 см</dd></div>
-          <div><dt>Статус</dt><dd class="online"><i></i> ONLINE</dd></div>
-        </dl>
-      </aside>
-
-      <article class="glass card interests">
-        <div class="section-title"><span>03</span><h2>Interests / Stack</h2></div>
-        <div class="tag-cloud">
-          <span>IT</span><span>PC</span><span>Tech</span><span>Web</span><span>VRChat</span><span>DARKCLAW</span><span>Creative</span>
-        </div>
-        <div class="quote">Технологии дают структуру. Творчество — характер. Я люблю смешивать оба мира.</div>
-      </article>
-
-      <article class="glass card signature">
-        <div class="sigil"><img src="darkclaw-logo.png" alt="DARKCLAW logo" /></div>
-        <div>
-          <small>CREATOR ID</small>
-          <strong>DARKCLAW</strong>
-          <p>Dark aesthetics • neon systems • winter mood</p>
-        </div>
-      </article>
+      <div class="scroll-note">SCROLL TO EXPLORE <span></span></div>
     </section>
 
-    <footer>
-      <span>ARI Em</span><i></i><span>DARKCLAW</span><i></i><span>2026</span>
+    <section class="content-grid" id="about">
+      <article class="about-card glass reveal">
+        <div class="section-label">01 / ABOUT ME</div>
+        <h2>Холодная эстетика.<br><em>Прямой характер.</em></h2>
+        <p>По характеру я довольно прямой человек. Люблю честность, не люблю лишнюю официальность и предпочитаю говорить всё как есть. Если мне что-то действительно интересно — могу долго разбираться в этом, пока не добьюсь нужного результата.</p>
+        <p>Мой стиль — тёмная эстетика, готика, неон, чёрно-фиолетовые оттенки и немного хаоса. В целом я человек, которому нравится сочетать техническую сторону с творчеством.</p>
+        <div class="quote">«Дисциплина в коде. Свобода в идеях. Хаос в деталях.»</div>
+      </article>
+
+      <aside class="identity-card glass reveal">
+        <div class="crest-wrap">
+          <img src="darkclaw-logo.png" alt="DARKCLAW">
+          <div class="pulse-ring"></div>
+        </div>
+        <div class="identity-copy">
+          <span>CREATOR ID</span>
+          <strong>ARI // EM</strong>
+          <small>DARKCLAW ORIGIN</small>
+        </div>
+        <div class="code-lines">
+          <span style="--w:84%"></span><span style="--w:62%"></span><span style="--w:73%"></span><span style="--w:45%"></span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="gallery-section glass reveal" id="gallery">
+      <div class="gallery-head">
+        <div><span>02 / VISUAL ARCHIVE</span><h2>Галерея</h2></div>
+        <p>Пять образов. Один профиль.</p>
+      </div>
+      <div class="thumb-grid" id="thumbGrid">
+        <button data-index="0"><img src="avatar1.png" alt="Gallery 1"><span>01</span></button>
+        <button data-index="1"><img src="avatar2.png" alt="Gallery 2"><span>02</span></button>
+        <button data-index="2"><img src="avatar3.png" alt="Gallery 3"><span>03</span></button>
+        <button data-index="3"><img src="avatar4.png" alt="Gallery 4"><span>04</span></button>
+        <button data-index="4"><img src="avatar5.png" alt="Gallery 5"><span>05</span></button>
+      </div>
+    </section>
+
+    <footer class="footer glass">
+      <div class="footer-logo"><img src="darkclaw-logo.png" alt=""><span>DARKCLAW</span></div>
+      <div>ARI Em · 2026</div>
+      <div>WINTER // GOTHIC // TECH</div>
     </footer>
   </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="closeLightbox">×</button>
+    <button class="lightbox-nav lb-prev" id="lbPrev">‹</button>
+    <img id="lightboxImg" src="avatar1.png" alt="Gallery preview">
+    <button class="lightbox-nav lb-next" id="lbNext">›</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
