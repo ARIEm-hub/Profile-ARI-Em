@@ -1,149 +1,17 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#09030f">
-  <meta name="description" content="ARI Em — creator of DARKCLAW. Personal profile.">
-  <title>ARI Em — DARKCLAW</title>
-  <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="site-bg" aria-hidden="true"></div>
-  <div class="bg-vignette" aria-hidden="true"></div>
-  <canvas id="snow" aria-hidden="true"></canvas>
-
-  <div id="loader" class="loader">
-    <div class="loader-inner">
-      <img src="darkclaw-logo.png" alt="DARKCLAW" class="loader-logo">
-      <div class="loader-title">DARKCLAW</div>
-      <div class="loader-line"><span></span></div>
-      <div class="loader-text">ENTERING ARI'S SPACE</div>
-    </div>
-  </div>
-
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <header class="topbar glass">
-    <a class="brand" href="#home" aria-label="DARKCLAW home">
-      <img src="darkclaw-logo.png" alt="">
-      <span>DARKCLAW</span>
-    </a>
-    <nav>
-      <a href="#home">PROFILE</a>
-      <a href="#about">ABOUT</a>
-      <a href="#gallery">GALLERY</a>
-    </nav>
-    <div class="online"><i></i> ONLINE</div>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-card glass">
-        <div class="portrait-side">
-          <div class="portrait-frame" id="portraitFrame">
-            <img id="mainPortrait" src="avatar1.png" alt="ARI avatar">
-            <div class="portrait-shine"></div>
-            <button class="arrow left" id="prevBtn" aria-label="Предыдущее изображение">‹</button>
-            <button class="arrow right" id="nextBtn" aria-label="Следующее изображение">›</button>
-            <div class="image-count"><span id="currentIndex">01</span> / 05</div>
-          </div>
-          <div class="dots" id="dots" aria-label="Выбор изображения"></div>
-        </div>
-
-        <div class="profile-side">
-          <div class="eyebrow">PERSONAL ID // 019</div>
-          <h1><span>ARI</span> Em</h1>
-          <div class="role-row">
-            <img src="darkclaw-logo.png" alt="DARKCLAW logo">
-            <div>
-              <small>CREATOR OF</small>
-              <strong>DARKCLAW</strong>
-            </div>
-          </div>
-
-          <div class="stats">
-            <div><span>AGE</span><strong>19</strong><small>лет</small></div>
-            <div><span>HEIGHT</span><strong>188</strong><small>см</small></div>
-            <div><span>MODE</span><strong>WINTER</strong><small>always</small></div>
-          </div>
-
-          <div class="tags">
-            <span>IT</span><span>PC</span><span>TECH</span><span>WEB</span><span>VRCHAT</span><span>DARKCLAW</span><span>CREATIVE</span>
-          </div>
-
-          <a href="#about" class="enter-btn"><span>READ PROFILE</span><b>↓</b></a>
-        </div>
-      </div>
-      <div class="scroll-note">SCROLL TO EXPLORE <span></span></div>
-    </section>
-
-    <section class="content-grid" id="about">
-      <article class="about-card glass reveal">
-        <div class="section-label">01 / ABOUT ME</div>
-        <h2>Холодная эстетика.<br><em>Прямой характер.</em></h2>
-        <p>По характеру я довольно прямой человек. Люблю честность, не люблю лишнюю официальность и предпочитаю говорить всё как есть. Если мне что-то действительно интересно — могу долго разбираться в этом, пока не добьюсь нужного результата.</p>
-        <p>Мой стиль — тёмная эстетика, готика, неон, чёрно-фиолетовые оттенки и немного хаоса. В целом я человек, которому нравится сочетать техническую сторону с творчеством.</p>
-        <div class="quote">«Дисциплина в коде. Свобода в идеях. Хаос в деталях.»</div>
-      </article>
-
-      <aside class="identity-card glass reveal">
-        <div class="crest-wrap">
-          <img src="darkclaw-logo.png" alt="DARKCLAW">
-          <div class="pulse-ring"></div>
-        </div>
-        <div class="identity-copy">
-          <span>CREATOR ID</span>
-          <strong>ARI // EM</strong>
-          <small>DARKCLAW ORIGIN</small>
-        </div>
-        <div class="code-lines">
-          <span style="--w:84%"></span><span style="--w:62%"></span><span style="--w:73%"></span><span style="--w:45%"></span>
-        </div>
-      </aside>
-    </section>
-
-    <section class="gallery-section glass reveal" id="gallery">
-      <div class="gallery-head">
-        <div><span>02 / VISUAL ARCHIVE</span><h2>Галерея</h2></div>
-        <p>Пять образов. Один профиль.</p>
-      </div>
-      <div class="thumb-grid" id="thumbGrid">
-        <button data-index="0"><img src="avatar1.png" alt="Gallery 1"><span>01</span></button>
-        <button data-index="1"><img src="avatar2.png" alt="Gallery 2"><span>02</span></button>
-        <button data-index="2"><img src="avatar3.png" alt="Gallery 3"><span>03</span></button>
-        <button data-index="3"><img src="avatar4.png" alt="Gallery 4"><span>04</span></button>
-        <button data-index="4"><img src="avatar5.png" alt="Gallery 5"><span>05</span></button>
-      </div>
-    </section>
-
-    <a class="darkclaw-cta glass" href="https://ariem-hub.github.io/DARKCLAW/" target="_blank" rel="noopener noreferrer" aria-label="Перейти на DARKCLAW">
-      <span class="darkclaw-cta-copy">
-        <small>DARKCLAW // OFFICIAL</small>
-        <strong>ПЕРЕЙТИ НА DARKCLAW</strong>
-        <em>Открыть основной сайт →</em>
-      </span>
-      <span class="darkclaw-cta-logo">
-        <img src="darkclaw-logo.png" alt="DARKCLAW">
-      </span>
-    </a>
-
-    <footer class="footer glass">
-      <div class="footer-logo"><img src="darkclaw-logo.png" alt=""><span>DARKCLAW</span></div>
-      <div>ARI Em · 2026</div>
-      <div>WINTER // GOTHIC // TECH</div>
-    </footer>
-  </main>
-
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" id="closeLightbox">×</button>
-    <button class="lightbox-nav lb-prev" id="lbPrev">‹</button>
-    <img id="lightboxImg" src="avatar1.png" alt="Gallery preview">
-    <button class="lightbox-nav lb-next" id="lbNext">›</button>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#08020e"><meta name="description" content="ARI Em — creator of DARKCLAW. Personal profile."><title>ARI Em — DARKCLAW</title><link rel="icon" href="favicon.png"><link rel="stylesheet" href="styles.css"></head><body>
+<div class="site-bg" id="siteBg" aria-hidden="true"></div><div class="aurora" aria-hidden="true"></div><div class="fog fog-a"></div><div class="fog fog-b"></div><div class="bg-vignette"></div><canvas id="snow"></canvas>
+<div id="loader" class="loader"><div class="loader-inner"><img src="darkclaw-logo.png" class="loader-logo" alt="DARKCLAW"><div class="loader-title">ARI <span>Em</span></div><div class="loader-sub">CREATOR OF DARKCLAW</div><div class="loader-line"><span></span></div><div class="loader-text">ENTERING WINTER // <b id="loadPct">00%</b></div></div></div>
+<div class="cursor-dot" id="cursorDot"></div><div class="cursor-ring" id="cursorRing"><span id="cursorLabel"></span></div>
+<header class="topbar glass"><a class="brand" href="#home"><img src="darkclaw-logo.png" alt=""><span>ARI // EM</span></a><nav><a href="#about">ABOUT</a><a href="#work">WHAT I DO</a><a href="#gallery">ARCHIVE</a><a href="#darkclaw">DARKCLAW</a></nav><button id="voidToggle" class="void-toggle"><i></i><span>CALM</span></button></header>
+<main>
+<section class="intro" id="home"><div class="intro-grid"></div><div class="intro-copy"><div class="intro-kicker">PERSONAL SPACE // 019</div><h1><span>ARI</span><em>Em</em></h1><p>CREATOR OF <b>DARKCLAW</b></p><div class="intro-tags"><span>WINTER</span><span>GOTHIC</span><span>TECH</span><span>CREATIVE</span></div></div><div class="intro-crest" id="secretCrest" title="DARKCLAW"><img src="darkclaw-logo.png" alt="DARKCLAW"></div><a class="scroll-down" href="#profile">SCROLL TO ENTER <i></i></a></section>
+<section class="profile-zone" id="profile"><div class="profile-visual glass reveal"><div class="portrait-frame view-target" id="portraitFrame"><img id="mainPortrait" src="avatar1.png" alt="ARI"><div class="portrait-shine"></div><button class="arrow left" id="prevBtn">‹</button><button class="arrow right" id="nextBtn">›</button><div class="image-count"><span id="currentIndex">01</span> / 05</div></div><div class="dots" id="dots"></div></div><div class="profile-info reveal"><div class="eyebrow">IDENTITY // ARI.EM</div><h2>ARI <span>Em</span></h2><p class="role">Создатель DARKCLAW</p><div class="hud-stats"><div><small>STATUS</small><strong><i></i> ONLINE</strong></div><div><small>AGE</small><strong>19 Y.O.</strong></div><div><small>HEIGHT</small><strong>188 CM</strong></div><div><small>LOCATION</small><strong>KAZAKHSTAN</strong></div><div class="wide"><small>ACCESS</small><strong>DARKCLAW // CREATOR</strong></div></div><div class="signature">CODE / SNOW / CHAOS</div></div></section>
+<section class="about-layout" id="about"><article class="about-main reveal"><div class="section-no">01</div><div class="section-title"><small>ABOUT // ARI</small><h2>Прямой характер.<br><span>Холодная эстетика.</span></h2></div><div class="about-columns"><p>По характеру я довольно прямой человек. Люблю честность, не люблю лишнюю официальность и предпочитаю говорить всё как есть.</p><p>Если мне что-то действительно интересно — могу долго разбираться в этом, пока не добьюсь нужного результата.</p><p>Мой стиль — тёмная эстетика, готика, неон, чёрно-фиолетовые оттенки и немного хаоса.</p><p>Мне нравится сочетать техническую сторону с творчеством — превращать идеи в вещи, которые можно увидеть, запустить и почувствовать.</p></div></article><aside class="quote-panel glass reveal"><span>PERSONAL NOTE</span><blockquote>«Дисциплина в коде.<br>Свобода в идеях.<br><b>Хаос в деталях.</b>»</blockquote><div class="quote-mark">ARI // EM</div></aside></section>
+<section class="work-section" id="work"><div class="section-head reveal"><div><small>02 / WHAT I DO</small><h2>Техника × творчество</h2></div><p>Наведи на направление.</p></div><div class="work-grid">
+<article class="skill-card reveal" data-code="01"><small>IT</small><h3>IT</h3><p>Системы, настройка, решение технических задач.</p><b>INFRA // SOFTWARE</b></article><article class="skill-card reveal" data-code="02"><small>PC</small><h3>PC</h3><p>Железо, производительность и тонкая настройка.</p><b>HARDWARE // TUNING</b></article><article class="skill-card reveal" data-code="03"><small>TECH</small><h3>TECH</h3><p>Эксперименты с технологиями и новыми инструментами.</p><b>TOOLS // SYSTEMS</b></article><article class="skill-card reveal" data-code="04"><small>WEB</small><h3>WEB</h3><p>Интерфейсы, дизайн и персональные веб-проекты.</p><b>DESIGN // FRONTEND</b></article><article class="skill-card reveal" data-code="05"><small>VRCHAT</small><h3>VRCHAT</h3><p>Миры, аватары, Unity и интерактивные системы.</p><b>WORLDS // AVATARS // UNITY</b></article><article class="skill-card reveal" data-code="06"><small>CREATIVE</small><h3>CREATIVE</h3><p>Визуальные идеи, атмосфера и немного контролируемого хаоса.</p><b>IDEAS // VISUAL</b></article></div></section>
+<section class="gallery-section reveal" id="gallery"><div class="gallery-head"><div><small>03 / VISUAL ARCHIVE</small><h2>Пять образов.<br><span>Один профиль.</span></h2></div><div class="archive-counter">ARCHIVE // 05 FILES</div></div><div class="archive-layout"><button class="archive-main view-target" data-index="0"><img src="avatar1.png" alt="ARI 01"><span>01 // PRIMARY</span></button><div class="archive-side"><button class="view-target" data-index="1"><img src="avatar2.png" alt="ARI 02"><span>02</span></button><button class="view-target" data-index="2"><img src="avatar3.png" alt="ARI 03"><span>03</span></button><button class="view-target" data-index="3"><img src="avatar4.png" alt="ARI 04"><span>04</span></button><button class="view-target" data-index="4"><img src="avatar5.png" alt="ARI 05"><span>05</span></button></div></div></section>
+<section class="darkclaw-project reveal" id="darkclaw"><div class="project-crest"><img src="darkclaw-logo.png" alt="DARKCLAW"></div><div><small>04 / PROJECT</small><h2>DARKCLAW</h2><p>Проект, в котором сходятся VRChat, творчество, технологии, люди и собственная визуальная эстетика.</p><div class="project-meta"><span>CREATOR // ARI EM</span><span>STATUS // ACTIVE</span></div></div></section>
+<a class="darkclaw-cta glass reveal" href="https://ariem-hub.github.io/DARKCLAW/" target="_blank" rel="noopener noreferrer"><span class="darkclaw-cta-copy"><small>DARKCLAW // OFFICIAL</small><strong>ПЕРЕЙТИ НА DARKCLAW</strong><em>Открыть основной сайт →</em></span><span class="darkclaw-cta-logo"><img src="darkclaw-logo.png" alt="DARKCLAW"></span></a>
+<footer class="footer"><div>ARI EM // 2026</div><div class="footer-center"><img src="darkclaw-logo.png" alt=""><span>MADE SOMEWHERE BETWEEN CODE, SNOW AND CHAOS.</span></div><div>WINTER // GOTHIC // TECH</div></footer>
+</main>
+<div class="lightbox" id="lightbox" aria-hidden="true"><button class="lightbox-close" id="closeLightbox">×</button><button class="lightbox-nav lb-prev" id="lbPrev">‹</button><img id="lightboxImg" src="avatar1.png" alt="Gallery preview"><button class="lightbox-nav lb-next" id="lbNext">›</button></div><div id="accessFlash" class="access-flash"><img src="darkclaw-logo.png" alt=""><strong>ACCESS GRANTED</strong><span>ARI // CREATOR</span></div><script src="script.js"></script></body></html>
