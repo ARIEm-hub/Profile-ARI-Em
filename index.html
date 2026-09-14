@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07070b">
+<title>ARI Em — DARKCLAW</title>
+<link rel="icon" href="favicon.png">
+<style>
+:root{
+ --ink:#f7f7fb;--muted:rgba(235,231,244,.62);--vio:#a96cff;--vio2:#7434dc;
+ --glass:rgba(24,20,31,.43);--glass2:rgba(255,255,255,.075);
+ --stroke:rgba(255,255,255,.16);--shadow:0 24px 80px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth;background:#07070b}
+body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,sans-serif;background:#07070b;overflow-x:hidden}
+a{color:inherit}button{font:inherit;color:inherit}.bg{position:fixed;inset:-3%;z-index:-5;background:linear-gradient(rgba(5,4,8,.38),rgba(6,5,9,.7)),url("background.jpg") center/cover no-repeat;transform:scale(1.04)}
+.bg:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 10%,rgba(173,113,255,.17),transparent 35%),linear-gradient(to bottom,transparent 55%,#07070b 99%)}
+#snow{position:fixed;inset:0;z-index:-2;pointer-events:none}
+
+/* loading — inspired by supplied clip: dark void, rotating luminous shards, then DARKCLAW mark rises */
+.loader{position:fixed;inset:0;z-index:9999;background:#06080e;display:grid;place-items:center;overflow:hidden;transition:opacity .8s ease,visibility .8s}
+.loader.done{opacity:0;visibility:hidden}.loadscene{position:relative;width:min(620px,100vw);height:min(620px,100vw);display:grid;place-items:center}
+.aura{position:absolute;width:60%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(123,93,255,.17),transparent 65%);filter:blur(24px);animation:breathe 2s ease-in-out infinite}
+.shards{position:absolute;inset:14%;animation:spin 5.8s cubic-bezier(.45,.05,.2,1) both}
+.shard{position:absolute;left:50%;top:50%;width:12px;height:42%;transform-origin:50% 0;filter:drop-shadow(0 0 9px rgba(152,194,255,.65));opacity:0;animation:shardIn 1.4s ease forwards}
+.shard:before{content:"";position:absolute;inset:0;border-radius:100% 10% 100% 10%;background:linear-gradient(90deg,transparent,#f8fbff 46%,#7ab5ff 56%,transparent);clip-path:polygon(50% 0,100% 76%,50% 100%,0 76%)}
+.shard:nth-child(1){transform:rotate(0deg)}.shard:nth-child(2){transform:rotate(45deg);animation-delay:.08s}.shard:nth-child(3){transform:rotate(90deg);animation-delay:.16s}.shard:nth-child(4){transform:rotate(135deg);animation-delay:.24s}.shard:nth-child(5){transform:rotate(180deg);animation-delay:.32s}.shard:nth-child(6){transform:rotate(225deg);animation-delay:.4s}.shard:nth-child(7){transform:rotate(270deg);animation-delay:.48s}.shard:nth-child(8){transform:rotate(315deg);animation-delay:.56s}
+.loader-core{position:relative;z-index:3;text-align:center}.loader-core b{display:block;font-size:clamp(34px,8vw,70px);letter-spacing:.12em;text-shadow:0 0 25px rgba(153,117,255,.35);animation:titleIn 1s .4s both}.loader-core span{font-size:10px;letter-spacing:.35em;color:#9d9aab}
+.loader-logo{position:absolute;z-index:5;width:92px;height:92px;object-fit:contain;opacity:0;filter:drop-shadow(0 0 18px rgba(165,93,255,.7));animation:logoRise 1.25s 3.35s cubic-bezier(.16,.8,.24,1) forwards}
+@keyframes shardIn{from{opacity:0;scale:.25}to{opacity:.8;scale:1}}@keyframes spin{0%,35%{rotate:-30deg;scale:.55}75%,100%{rotate:260deg;scale:1.35}}@keyframes breathe{50%{scale:1.2;opacity:.55}}@keyframes titleIn{from{opacity:0;filter:blur(14px);transform:translateY(12px)}to{opacity:1;filter:none;transform:none}}@keyframes logoRise{0%{opacity:0;transform:translateY(80px) scale(.5)}35%{opacity:1}100%{opacity:1;transform:translateY(calc(-50vh + 74px)) scale(.62)}}
+
+/* iOS liquid glass */
+.glass{position:relative;background:linear-gradient(135deg,rgba(255,255,255,.105),rgba(255,255,255,.035) 46%,rgba(174,110,255,.045));border:1px solid var(--stroke);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(255,255,255,.035),var(--shadow);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%)}
+.glass:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(600px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.13),transparent 34%)}
+.dock{position:fixed;z-index:100;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(760px,calc(100% - 24px));border-radius:24px;padding:8px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;padding:6px 10px}.brand img{width:28px;height:28px;object-fit:contain}.brand b{font-size:12px;letter-spacing:.12em}
+.nav{display:flex;gap:3px}.nav a{font-size:11px;text-decoration:none;color:var(--muted);padding:9px 12px;border-radius:16px}.nav a:hover{background:rgba(255,255,255,.08);color:white}
+.hero{min-height:100svh;padding:120px 18px 48px;display:flex;align-items:center}.wrap{width:min(1120px,100%);margin:auto}
+.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.heroCopy{padding:clamp(26px,5vw,58px);border-radius:38px;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.mini{font-size:10px;letter-spacing:.24em;color:#d5c4ed;text-transform:uppercase}.hero h1{font-size:clamp(64px,11vw,126px);line-height:.82;letter-spacing:-.065em;margin:18px 0 24px}.hero h1 em{font-style:normal;color:#c79bff}.hero p{font-size:clamp(15px,2vw,19px);line-height:1.65;color:rgba(255,255,255,.75);max-width:650px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.chip{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);font-size:11px;color:#e8e0f1}
+.heroPhoto{border-radius:38px;min-height:610px;overflow:hidden;padding:10px}.photoFit{width:100%;height:100%;min-height:590px;display:flex;align-items:center;justify-content:center;border-radius:30px;overflow:hidden;background:rgba(3,3,6,.36)}.photoFit img{display:block;width:100%;height:100%;max-height:78vh;object-fit:contain;object-position:center;user-select:none;-webkit-user-drag:none}
+.section{padding:70px 18px}.section h2{font-size:clamp(38px,6vw,68px);letter-spacing:-.045em;margin:8px 0 24px}.about{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.card{border-radius:30px;padding:28px}.card p{color:rgba(255,255,255,.7);font-size:16px;line-height:1.75;margin:0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fact{border-radius:22px;padding:18px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09)}.fact small{display:block;color:var(--muted);font-size:9px;letter-spacing:.17em;margin-bottom:8px}.fact b{font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tile{border-radius:28px;padding:24px;min-height:155px}.tile small{color:#c6acd9}.tile h3{font-size:25px;margin:18px 0 8px}.tile p{font-size:13px;color:var(--muted);line-height:1.55}
+.gallery{border-radius:36px;padding:12px}.viewer{height:min(76vh,760px);min-height:480px;border-radius:28px;background:rgba(2,2,5,.46);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.viewer img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;user-select:none;-webkit-user-drag:none}.shield{position:absolute;inset:0;z-index:2}.gbar{position:absolute;z-index:4;left:14px;right:14px;top:14px;display:flex;justify-content:space-between;pointer-events:none}.gbar>*{pointer-events:auto}.counter,.round{background:rgba(22,19,28,.56);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(18px);border-radius:999px}.counter{padding:9px 12px;font-size:10px;letter-spacing:.16em}.round{width:40px;height:40px;cursor:pointer}.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.thumb{height:110px;padding:0;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);cursor:pointer}.thumb img{width:100%;height:100%;object-fit:contain;pointer-events:none}.thumb.on{border-color:rgba(190,140,255,.65);box-shadow:0 0 24px rgba(144,73,255,.15)}
+.dc{display:grid;grid-template-columns:.72fr 1.28fr;gap:14px}.dcLogo{border-radius:32px;display:grid;place-items:center;min-height:300px}.dcLogo img{width:min(145px,44%);max-height:145px;object-fit:contain;filter:drop-shadow(0 0 24px rgba(157,78,255,.35))}.dcCopy{border-radius:32px;padding:34px;display:flex;flex-direction:column;justify-content:center}.dcCopy h3{font-size:38px;margin:0 0 10px}.dcCopy p{color:var(--muted);line-height:1.65}.dcBtn{margin-top:18px;padding:18px 20px;border-radius:22px;text-decoration:none;font-weight:800;letter-spacing:.08em;background:linear-gradient(100deg,#7028dc,#a45cff);display:flex;align-items:center;justify-content:space-between;box-shadow:0 14px 38px rgba(112,40,220,.3)}.dcBtn img{width:34px;height:34px;object-fit:contain}
+footer{text-align:center;color:rgba(255,255,255,.35);font-size:10px;letter-spacing:.16em;padding:30px 20px 55px}
+/* lightweight liquid cursor */
+.cursor{position:fixed;z-index:9998;width:28px;height:28px;border-radius:50%;pointer-events:none;display:none;transform:translate(-50%,-50%);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(3px);box-shadow:inset 5px 5px 10px rgba(255,255,255,.08),0 0 18px rgba(158,91,255,.16);transition:width .15s,height .15s,border-radius .15s}
+@media(pointer:fine){body{cursor:none}.cursor{display:block}a,button{cursor:none}.cursor.hot{width:42px;height:42px;border-radius:42% 58% 55% 45%}}
+@media(max-width:760px){.nav a:not(:last-child){display:none}.hero{padding-top:105px}.heroGrid,.about,.dc{grid-template-columns:1fr}.heroPhoto{min-height:auto}.photoFit{min-height:0;height:auto}.photoFit img{height:auto;max-height:none}.grid{grid-template-columns:1fr 1fr}.viewer{height:auto;min-height:0;aspect-ratio:4/5}.thumbs{overflow-x:auto;grid-template-columns:repeat(5,92px);padding-bottom:3px}.thumb{height:92px}.section{padding:52px 14px}.heroCopy,.heroPhoto{border-radius:30px}.dock{border-radius:21px}}
+@media(max-width:470px){.grid{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.hero h1{font-size:70px}.viewer{aspect-ratio:3/4}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important}.cursor{display:none!important}body{cursor:auto!important}}
+</style>
+</head>
+<body>
+<div class="bg"></div><canvas id="snow"></canvas>
+<div class="loader" id="loader"><div class="loadscene"><div class="aura"></div><div class="shards"><i class="shard"></i><i class="shard"></i><i class="shard"></i><i class="shard"></i><i class="shard"></i><i class="shard"></i><i class="shard"></i><i class="shard"></i></div><div class="loader-core"><b>ARI Em</b><span>LIQUID // PROFILE</span></div><img class="loader-logo" src="darkclaw-logo.png" alt=""></div></div>
+<div class="cursor" id="cursor"></div>
+<header class="dock glass"><a class="brand" href="#top"><img src="darkclaw-logo.png" alt=""><b>ARI EM</b></a><nav class="nav"><a href="#about">Обо мне</a><a href="#focus">Направления</a><a href="#gallery">Фото</a><a href="#darkclaw">DARKCLAW</a></nav></header>
+<section class="hero" id="top"><div class="wrap heroGrid">
+<div class="heroCopy glass"><div class="mini">PERSONAL PROFILE // DARKCLAW CREATOR</div><h1>ARI <em>Em</em></h1><p>Тёмная эстетика, технологии, VRChat и творчество. Интерфейс собран в духе iOS Liquid Glass: прозрачные слои, мягкая глубина и минимум тяжёлых эффектов.</p><div class="chips"><span class="chip">19 Y.O.</span><span class="chip">188 CM</span><span class="chip">KAZAKHSTAN</span><span class="chip">CREATOR OF DARKCLAW</span></div></div>
+<div class="heroPhoto glass"><div class="photoFit protected"><img src="avatar1.png" alt="ARI Em" draggable="false"></div></div>
+</div></section>
+<main>
+<section class="section" id="about"><div class="wrap"><div class="mini">01 // IDENTITY</div><h2>Обо мне</h2><div class="about"><article class="card glass"><p>По характеру я довольно прямой человек. Люблю честность, не люблю лишнюю официальность и предпочитаю говорить всё как есть. Если мне что-то действительно интересно — могу долго разбираться в этом, пока не добьюсь нужного результата.<br><br>Мой стиль — тёмная эстетика, готика, неон, чёрно-фиолетовые оттенки и немного хаоса. Нравится сочетать техническую сторону с творчеством.</p></article><aside class="card glass facts"><div class="fact"><small>AGE</small><b>19 лет</b></div><div class="fact"><small>HEIGHT</small><b>188 см</b></div><div class="fact"><small>LOCATION</small><b>Kazakhstan</b></div><div class="fact"><small>ROLE</small><b>DARKCLAW Creator</b></div></aside></div></div></section>
+<section class="section" id="focus"><div class="wrap"><div class="mini">02 // FOCUS</div><h2>Направления</h2><div class="grid"><article class="tile glass"><small>01</small><h3>IT</h3><p>Системы, инструменты и автоматизация.</p></article><article class="tile glass"><small>02</small><h3>PC</h3><p>Железо, настройка и производительность.</p></article><article class="tile glass"><small>03</small><h3>TECH</h3><p>Технологии и технические эксперименты.</p></article><article class="tile glass"><small>04</small><h3>WEB</h3><p>Интерфейсы, сайты и персональные проекты.</p></article><article class="tile glass"><small>05</small><h3>VRCHAT</h3><p>Worlds, avatars, Unity и интерактив.</p></article><article class="tile glass"><small>06</small><h3>CREATIVE</h3><p>Визуальная подача и атмосфера.</p></article></div></div></section>
+<section class="section" id="gallery"><div class="wrap"><div class="mini">03 // VISUAL ARCHIVE</div><h2>Фотографии</h2><div class="gallery glass"><div class="viewer" id="viewer"><img id="mainPhoto" src="avatar1.png" alt="" draggable="false"><div class="shield"></div><div class="gbar"><span class="counter" id="count">01 / 05</span><div><button class="round" id="prev">←</button><button class="round" id="next">→</button></div></div></div><div class="thumbs" id="thumbs"></div></div></div></section>
+<section class="section" id="darkclaw"><div class="wrap"><div class="mini">04 // PROJECT</div><h2>DARKCLAW</h2><div class="dc"><div class="dcLogo glass"><img src="darkclaw-logo.png" alt="DARKCLAW"></div><div class="dcCopy glass"><h3>DARKCLAW</h3><p>Отдельное пространство со своей фиолетовой эстетикой, VRChat-направлением и собственной атмосферой.</p><a class="dcBtn" href="https://ariem-hub.github.io/DARKCLAW/" target="_blank" rel="noopener"><span>ПЕРЕЙТИ НА DARKCLAW</span><img src="darkclaw-logo.png" alt=""></a></div></div></div></section>
+</main><footer>ARI EM // 2026 · LIQUID GLASS PROFILE</footer>
+<script>
+(()=>{"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// guaranteed loader exit after the authored animation
+const loader=$("#loader");const end=()=>{if(!loader||loader.classList.contains("done"))return;loader.classList.add("done");setTimeout(()=>loader.remove(),900)};
+window.addEventListener("load",()=>setTimeout(end,4550),{once:true});setTimeout(end,6200);
+// snow: capped particle count, no blur filters
+const c=$("#snow"),x=c.getContext("2d");let fs=[];function rs(){const d=Math.min(devicePixelRatio,1.5);c.width=innerWidth*d;c.height=innerHeight*d;c.style.width=innerWidth+"px";c.style.height=innerHeight+"px";x.setTransform(d,0,0,d,0,0);fs=Array.from({length:Math.min(75,Math.floor(innerWidth/16))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:.6+Math.random()*1.4,s:.25+Math.random()*.5,a:.2+Math.random()*.4}))}function sn(){x.clearRect(0,0,innerWidth,innerHeight);for(const f of fs){x.beginPath();x.fillStyle=`rgba(225,215,255,${f.a})`;x.arc(f.x,f.y,f.r,0,7);x.fill();f.y+=f.s;if(f.y>innerHeight+3){f.y=-3;f.x=Math.random()*innerWidth}}requestAnimationFrame(sn)}addEventListener("resize",rs,{passive:true});rs();sn();
+// liquid highlight uses CSS vars only; no continuous JS animation
+$$(".glass").forEach(g=>g.addEventListener("pointermove",e=>{const r=g.getBoundingClientRect();g.style.setProperty("--mx",((e.clientX-r.left)/r.width*100)+"%");g.style.setProperty("--my",((e.clientY-r.top)/r.height*100)+"%")},{passive:true}));
+// gallery uses real <img> + object-fit:contain, so portrait and landscape photos are never cropped
+const photos=["avatar1.png","avatar2.png","avatar3.png","avatar4.png","avatar5.png"];let i=0,mp=$("#mainPhoto"),cnt=$("#count"),th=$("#thumbs");
+photos.forEach((p,n)=>{let b=document.createElement("button");b.className="thumb"+(n===0?" on":"");b.innerHTML=`<img src="${p}" draggable="false" alt="">`;b.onclick=()=>show(n);th.appendChild(b)});
+function show(n){i=(n+photos.length)%photos.length;mp.style.opacity=".25";setTimeout(()=>{mp.src=photos[i];cnt.textContent=String(i+1).padStart(2,"0")+" / 05";$$(".thumb").forEach((b,n)=>b.classList.toggle("on",n===i));mp.style.opacity="1"},100)}$("#prev").onclick=()=>show(i-1);$("#next").onclick=()=>show(i+1);
+let sx=0;$("#viewer").addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});$("#viewer").addEventListener("touchend",e=>{let dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)show(i+(dx<0?1:-1))},{passive:true});
+// basic image friction
+document.addEventListener("contextmenu",e=>{if(e.target.closest(".protected,.viewer,.thumb,.dcLogo"))e.preventDefault()});document.addEventListener("dragstart",e=>{if(e.target.tagName==="IMG")e.preventDefault()});$$("img").forEach(i=>i.draggable=false);
+// one lightweight cursor element, direct pointer positioning: no trailing RAF loop
+if(matchMedia("(pointer:fine)").matches){const cur=$("#cursor");addEventListener("pointermove",e=>{cur.style.left=e.clientX+"px";cur.style.top=e.clientY+"px"},{passive:true});$$("a,button").forEach(a=>{a.onmouseenter=()=>cur.classList.add("hot");a.onmouseleave=()=>cur.classList.remove("hot")})}
+})();
+</script></body></html>
